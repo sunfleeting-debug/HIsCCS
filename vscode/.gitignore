@@ -1,0 +1,11 @@
+out
+out-test
+dist
+node_modules
+.vscode-test/
+*.vsix
+__pycache__/
+.claude/
+*.log
+.env
+.env.*

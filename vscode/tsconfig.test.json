@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "ES2022",
+		"lib": ["ES2022"],
+		"strict": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"rootDir": ".",
+		"outDir": "out-test"
+	},
+	"include": ["src/agent/*.ts", "test/unit/*.ts"]
+}

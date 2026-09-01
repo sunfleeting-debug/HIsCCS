@@ -1,0 +1,53 @@
+<idea-plugin>
+  <id>com.bluecome.cmg</id>
+  <name>HisCCS - AI Commit Message</name>
+  <vendor email="" url="https://github.com/CSU-OSS/CMG-VSCode">sunfleeting108</vendor>
+  <description><![CDATA[
+    AI-powered Git commit message generator supporting DeepSeek, Qwen, OpenAI and any OpenAI-compatible API.<br/>
+    Features: AI generate, type selector, AI autocomplete, commit history panel, AI Chat sidebar.
+  ]]></description>
+
+  <depends>com.intellij.modules.platform</depends>
+  <depends>Git4Idea</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceImplementation="com.bluecome.cmg.settings.CmgSettings"/>
+    <applicationConfigurable
+        parentId="tools"
+        instance="com.bluecome.cmg.settings.CmgSettingsConfigurable"
+        id="com.bluecome.cmg.settings"
+        displayName="HisCCS CMG"/>
+
+    <toolWindow id="HisCCS"
+                anchor="right"
+                factoryClass="com.bluecome.cmg.toolwindow.HisCCSToolWindowFactory"/>
+
+    <completion.contributor
+        language="TEXT"
+        implementationClass="com.bluecome.cmg.completion.CommitMessageCompletionContributor"/>
+  </extensions>
+
+  <actions>
+    <action id="HisCCS.GenerateCommit"
+            class="com.bluecome.cmg.actions.GenerateCommitAction"
+            text="Generate Commit Message (AI)"
+            description="Use AI to generate commit message candidates from staged diff">
+      <add-to-group group-id="Vcs.MessageActionGroup" anchor="first"/>
+    </action>
+
+    <action id="HisCCS.SelectType"
+            class="com.bluecome.cmg.actions.SelectTypeAction"
+            text="Select Commit Type"
+            description="Pick a Conventional Commits type prefix (feat/fix/docs/…)">
+      <add-to-group group-id="Vcs.MessageActionGroup" anchor="after" relative-to-action="HisCCS.GenerateCommit"/>
+    </action>
+
+    <action id="HisCCS.Autocomplete"
+            class="com.bluecome.cmg.actions.AutocompleteAction"
+            text="AI Complete Commit Message"
+            description="Let AI complete or improve your partially typed commit message">
+      <add-to-group group-id="Vcs.MessageActionGroup" anchor="after" relative-to-action="HisCCS.SelectType"/>
+    </action>
+  </actions>
+</idea-plugin>
+

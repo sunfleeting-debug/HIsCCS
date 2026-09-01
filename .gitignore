@@ -1,0 +1,20 @@
+# VSCode
+node_modules/
+out/
+dist/
+*.vsix
+.vscode-test/
+
+# JetBrains
+.gradle/
+.idea/
+.intellijPlatform/
+build/
+
+# misc
+__pycache__/
+.claude/
+*.log
+.env
+.env.*
+.DS_Store
